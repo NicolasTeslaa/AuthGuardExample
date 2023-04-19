@@ -1,4 +1,5 @@
 using AuthGuardExample.Context;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+/*
+ usado para configurar e adicionar a funcionalidade de autenticação e autorização baseada em identidade no ASP.NET Core usando o Entity Framework Core
+*/
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<Context>()
+    .AddDefaultTokenProviders();
+
+
+//resolve o erro de cors
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "MyPolicy",
@@ -37,7 +47,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+//adicionado
+app.UseAuthentication();
+//já estava no projeto
 app.UseAuthorization();
 
 app.MapControllers();

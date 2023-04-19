@@ -1,9 +1,11 @@
 using AuthGuardExample.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AuthGuardExample.Context
 {
-    public class Context : DbContext
+    public class Context : IdentityDbContext<IdentityUser>
     {
         public Context() { }
 
