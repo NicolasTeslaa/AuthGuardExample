@@ -6,7 +6,7 @@ using AuthGuardExample.Services;
 namespace AuthGuardExample.Controllers;
 
 [ApiController]
-[Route("v1")]
+[Route("api")]
 public class LoginController : ControllerBase
 {
     [HttpPost]
